@@ -9,8 +9,8 @@
 **Wifi info**
 - 2.4ghz : Smartfarm , hong4321
 - 5.0Ghz : Smartfarm 5G , hong4321
-- SSH :
-- VNC :
+- SSH : Dongyang IP: 192.168.0.61
+- VNC : Dongyang IP: 192.168.0.61
 - DDNS :
 
 # System info 
