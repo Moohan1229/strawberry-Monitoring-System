@@ -12,6 +12,7 @@
 - SSH : Dongyang IP: 192.168.0.61 / Hongseong IP: 121.153.251.59:58001
 - VNC : Dongyang IP: 192.168.0.61 / Hongseong IP: 121.153.251.59:59010
 - DDNS :
+- NAS : Hongseong-SB01 / Dytw1234!
 
 **Raspberry 4 Compute Module Wifi info**
 - 2.4ghz : Smartfarm , hong4321
@@ -19,6 +20,7 @@
 - SSH : Dongyang IP: 192.168.0.86 / Hongseong IP: 121.153.251.59:58005
 - VNC : Dongyang IP: 192.168.0.86 / Hongseong IP: 121.153.251.59:59110
 - DDNS :
+- NAS : Hongseong-SB02 / Dytw1234!
 
 # System info 
 **Axis**
