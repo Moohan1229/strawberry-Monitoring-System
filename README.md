@@ -35,7 +35,9 @@
 - INFO: OpenVPN , IP x,x,x,x , Port xxxxx
 **VPN Setup**
 - sudo apt-get install openvpn
-- sudo openvpn --config /home/SB01/VPNConfig.ovpn (install : Window CMD -> pscp C:\Users\LEEHONGJU\Downloads\open\VPNConfig.ovpn SB01@라즈베리파이_IP:/home/SB01/ *Start the pscp.exe (PuTTy))
+- sudo apt upgrade
+- pip install smbprotocol
+- sudo openvpn --config /home/SB01/VPNConfig.ovpn (install : Window CMD -> pscp -P 58001 C:\Users\LEEHONGJU\Downloads\open\VPNConfig.ovpn SB01@라즈베리파이_IP:/home/SB01/ *Start the pscp.exe (PuTTy))
 - sudo openvpn --config /home/SB01/VPNConfig.ovpn --daemon
 - sudo mount -t cifs -o username=SB01,password=********\*,uid=pi,gid=pi //10.8.0.1/homes/SB01 /home/SB01/Photo
   Mount Complete
