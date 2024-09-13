@@ -143,6 +143,7 @@ async def main_loop():
     while True:
         await Auto_motion()
         await asyncio.sleep(0.1)  # 비동기적으로 0.1초 대기
+        print(f"Now X axis Count : {posision_count}")
 try:
     asyncio.run(main_loop())
 
