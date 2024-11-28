@@ -55,3 +55,8 @@
  - sudo raspi-config : Interfacing Options -> P1 Camera -> Enable
  - sudo apt install libcamera-apps
 
+**VPN Config**
+ - conf file Address : /etc/openvpn/client/VPNConfig.conf
+ - Service file Address : /lib/systmed/system/openvpn-client@.service
+ - ovpn flie Address : /etc/openvpn/client/VPNConfig.ovpn
+
