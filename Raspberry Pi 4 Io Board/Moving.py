@@ -33,6 +33,8 @@ count_reset = False
 last_change_time = None
 bug_Check = False
 safety = False
+Z_Down = False
+Auto_Start = False
 No_movement_time = 5000  # 50초 동안 움직임이 없으면 리셋
 HOME_BACK = 300  # 리셋 시 홈 위치로 돌아가는 대기 시간
 SHOT_TIME = 5  # 촬영 시간
@@ -71,8 +73,8 @@ async def check_time():
     scheduled_times = [
         "01:00:00", "02:00:00", "03:00:00", "04:00:00", "05:00:00",
         "06:00:00", "07:00:00", "08:00:00", "09:00:00", "10:00:00",
-        "11:00:00", "12:00:00", "13:00:00", "14:10:00", "15:00:00",
-        "16:17:00", "17:00:00", "18:00:00", "19:00:00", "20:00:00",
+        "11:00:00", "12:00:00", "13:00:00", "14:00:00", "15:00:00",
+        "16:00:00", "17:00:00", "18:00:00", "19:00:00", "20:00:00",
         "21:00:00", "22:00:00", "23:00:00"
     ]
 
@@ -119,7 +121,7 @@ async def update_position_count():
 
 # 자동운전 프로그램 ----------------------------------------------------------------------------------
 async def Auto_motion():
-    global position_count, Start_switch, count_reset, last_change_time, last_position_count, bug_Check, safety
+    global position_count, Start_switch, count_reset, last_change_time, last_position_count, bug_Check, safety, Z_Down, Auto_Start
     current_time = time.time()
 
     # Position Count 업데이트
@@ -140,10 +142,22 @@ async def Auto_motion():
         await asyncio.sleep(HOME_BACK)
         GPIO.output(X_CCW, GPIO.HIGH)
         GPIO.output(Z_CCW, GPIO.HIGH)
-        count_reset = False
         bug_Check = False
-
+        count_reset = False
+    
     if Start_switch and not count_reset:
+        Z_Down = True
+
+    if Z_Down:
+        await asyncio.sleep(2)
+        GPIO.output(Z_CW, GPIO.LOW)
+        await asyncio.sleep(AUTO_Z_CW)
+        GPIO.output(Z_CW, GPIO.HIGH)
+        Auto_Start = True
+        Z_Down = False
+        
+
+    if Auto_Start:
 
         print("Auto motion Start")
 
@@ -171,7 +185,6 @@ async def Auto_motion():
                     print(f"API 호출 성공, 상태 코드: {response.status_code}")
                 except requests.RequestException as e:
                     print(f"API 호출 실패: {e}")
-
                 await asyncio.sleep(SHOT_TIME)
 
                 GPIO.output(Z_CCW, GPIO.LOW)
@@ -187,6 +200,7 @@ async def Auto_motion():
             Start_switch = False
             bug_Check = False
             count_reset = True
+            Auto_Start = False
 
         last_position_count = position_count
 
